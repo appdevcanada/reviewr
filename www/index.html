@@ -12,20 +12,21 @@
 </head>
 <body>
     <main class="container">
-        <section class="page" id="lauren">
-            <h1 data-target="heena">This is page Lauren</h1>
+        <section class="page" id="home">
+            <h1 data-target="detail">This is page Lauren</h1>
         </section>
 
-        <section class="page" id="heena">
-            <h1 data-target="luis">This is page Heena</h1>
+        <section class="page" id="detail">
+            <h1 data-target="take">This is page Heena</h1>
         </section>
 
-        <section class="page" id="luis">
-            <h1 data-target="lauren">This is page Luis</h1>
+        <section class="page" id="take">
+            <input type="text" data-target="title" placeholder="Enter a title"></input>
+            <p>Rating: <span id="lblvalue"></span></p><p><input type="range" data-target="rating" min="1" max="5" step="1" value="5" id="sliderating" class="slider"></input></p>
         </section>
     </main>
 
-    <script type="text/javascript" src="cordova.js"></script>
+    <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
