@@ -3,3 +3,4 @@ platforms/
 hooks/
 .DS_Store
 .vscode/
+typings/
