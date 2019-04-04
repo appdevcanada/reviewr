@@ -12,6 +12,9 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "ca.edumedia.mora0199.reviewr"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "ca.edumedia.mora0199.reviewr"
     }
   },
   "dependent_plugins": {}
