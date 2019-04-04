@@ -7,10 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "ca.edumedia.mora0199.reviewr"
     },
-    "cordova-plugin-camera": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "ca.edumedia.mora0199.reviewr"
     }
   },
