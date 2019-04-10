@@ -1,32 +1,92 @@
-<!-- Main HTML -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <title>SPA Demo</title>    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/;
+        font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://cdnjs.cloudflare.com/;
+        script-src 'self' 'unsafe-eval';
+        img-src 'self' data: content: ;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Reviewr</title>
 </head>
+
 <body>
-    <main class="container">
-        <section class="page" id="home">
-            <h1 data-target="detail">This is page Lauren</h1>
-        </section>
-
-        <section class="page" id="detail">
-            <h1 data-target="take">This is page Heena</h1>
-        </section>
-
-        <section class="page" id="take">
-            <input type="text" data-target="title" placeholder="Enter a title"></input>
-            <p>Rating: <span id="lblvalue"></span></p><p><input type="range" data-target="rating" min="1" max="5" step="1" value="5" id="sliderating" class="slider"></input></p>
-        </section>
-    </main>
-
-    <!-- <script type="text/javascript" src="cordova.js"></script> -->
-    <script type="text/javascript" src="js/main.js"></script>
+    <div class="header" id="header">
+        <h2>REVIEWR</h2>
+    </div>
+    <div class="pages hide" id="0-home">
+        <ul class="rv-list">
+            <!-- <li class="rv-item" id="">
+                <img class="rv-img" src="" />
+                <h3 class="rv-title">Just a TITLE</h3>
+                <div class="rv-rating">
+                    <h3 class="checked">★★★</h3>
+                    <h3>★★</h3>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+    <div class="pages hide" id="1-detail">
+        <div class="detail" id="rv-detail">
+            <button id="bck-btn"></button>
+            <img class="det-img" id="detail-img" src="" />
+            <div class="group-det">
+                <input id="det-ttl" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Title</label>
+            </div>
+            <div class="det-rating">
+                <span id="0" class="fa fa-star"></span>
+                <span id="1" class="fa fa-star"></span>
+                <span id="2" class="fa fa-star"></span>
+                <span id="3" class="fa fa-star"></span>
+                <span id="4" class="fa fa-star"></span>
+            </div>
+            <button id="del-btn" data_id="">Delete Review</button>
+        </div>
+    </div>
+    <!-- I didn't see any need to have a screen just to click another button to open camera -->
+    <!-- <div class="pages hide" id="picture">
+        <div class="camera-take">
+            <img id="take-img" src="./img/img.png" />
+            <button id="take-btn">Take Picture</button>
+            <p id="msg"></p>
+        </div>
+    </div> -->
+    <div class="pages hide" id="2-review">
+        <div class="add-rv" id="add-rv-detail">
+            <img id="rv-img" src="" />
+            <div class="group-add">
+                <input id="add-ttl" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Title</label>
+            </div>
+            <div class="det-add-rating">
+                <span id="0" class="fa fa-star"></span>
+                <span id="1" class="fa fa-star"></span>
+                <span id="2" class="fa fa-star"></span>
+                <span id="3" class="fa fa-star"></span>
+                <span id="4" class="fa fa-star"></span>
+            </div>
+            <button id="cancel-btn">Cancel</button>
+            <button id="save-btn">Save</button>
+        </div>
+    </div>
+    <nav class="footer hide" id="add-btn">
+        <a href="#"><span id="fab" class="fab"></span></a>
+    </nav>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 </body>
+
 </html>

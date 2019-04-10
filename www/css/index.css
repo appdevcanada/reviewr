@@ -1,0 +1,421 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+  padding-top: 1.25rem;                       /* iOs 10 or lower */
+  padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
+  padding-top: env(safe-area-inset-top);      /* iOS 11.2 */
+  background-color: rgb(255, 255, 255);
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1rem;
+  width: 100%;
+  max-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+}
+.pages {
+  display: block;
+  margin-top: 70px;
+  z-index: 50;
+}
+
+.hide {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 56px;
+  z-index: 100;
+  background-color: rgb(66,133,244);
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+h2 {
+  text-align: center;
+  color: rgb(255,255,255);
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  font-weight: 400;
+}
+
+span.fab {
+  background: rgb(219,68,55) url('../img/Add.svg') center no-repeat;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+}
+
+.footer {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+}
+
+input, button {
+  background-color: transparent; /* make the button transparent */
+  background-repeat: no-repeat;  /* make the background image appear only once */
+  border: none;
+  outline: none;
+  height: 36px;
+  width: 50px;
+  vertical-align: middle;
+}
+
+.rv-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rv-item {
+  margin-bottom: 2px;
+  padding: 5px;
+  display: grid;
+  grid-auto-rows: 75px;
+  grid-template-areas:
+      "i t t"
+      "i r r";
+  grid-template-columns: 1fr 4fr;
+  background-color:rgba(201, 201, 201, 0.3);
+  align-content: start;
+  align-items: start;
+  justify-self: start;
+  width: 100%;
+  height: 150px;
+}
+
+.rv-img {
+  grid-area: i;
+  justify-self: start;
+  width: 140px;
+  height: 140px;
+}
+
+.rv-title {
+  grid-area: t;
+  color: rgb(80, 80, 80);
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.rv-rating {
+  grid-area: r;
+  color: rgb(0, 0, 0);
+  padding-left: 0.5rem;
+  font-size: 1.5rem;
+  display: inline-flex;
+}
+
+.checked {
+  color: orange;
+}
+
+.detail {
+  padding: 5px;
+  display: grid;
+  grid-auto-rows: 30px 350px 60px 45px 90px;
+  grid-template-areas:
+      "bck"
+      "img"
+      "ttl"
+      "rvw"
+      "btn";
+  grid-template-columns: 1fr;
+  background-color:rgb(255, 255, 255);
+  width: 100%;
+  height: 570px;
+}
+
+#bck-btn {
+  grid-area: bck;
+  height: 30px;
+  background-image: url('../img/back-btn.svg'); /* file:///android_asset/www/img/btn-play.svg */
+}
+
+.det-img {
+  grid-area: img;
+  justify-self: start;
+  width: 100%;
+  height: 350px;
+}
+
+#detail-title {
+  /* grid-area: ttl; */
+  color: rgb(80, 80, 80);
+  padding: 0.3rem;
+  align-self: end;
+  justify-self: center;
+}
+
+.det-rating {
+  grid-area: rvw;
+  color: rgb(0, 0, 0);
+  padding: 0.3rem;
+  font-size: 1.5rem;
+  display: inline-flex;
+  justify-self: center;
+  align-self: end;
+}
+
+#del-btn {
+  grid-area: btn;
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  padding: 0;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  border-radius: 4px;
+  width: 80%;
+  height: 36px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  background-color: rgb(219,68,55);
+  color: rgb(236, 240, 241);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.group-det {
+  grid-area: ttl;
+  position: relative;
+  align-self: end;
+  padding-top: 10px;
+}
+
+#det-ttl, #add-ttl {
+  padding: 10px;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgb(117, 117, 117);
+}
+
+#det-ttl:focus,
+#add-ttl:focus {
+  outline: none;
+}
+
+.add-rv {
+  padding: 5px;
+  display: grid;
+  grid-auto-rows: 350px 60px 50px 100px;
+  grid-template-areas:
+      "img-tak img-tak"
+      "ttl-tak ttl-tak"
+      "rat-tak rat-tak"
+      "btn-ccl btn-sav";
+  grid-template-columns: 1fr 1fr;
+  background-color: rgb(255, 255, 255);
+  align-content: start;
+  align-items: start;
+  justify-self: start;
+  width: 100%;
+  height: 560px;
+}
+ /* rgba(201, 201, 201, 0.3) */
+#rv-img {
+  grid-area: img-tak;
+  justify-self: center;
+  width: 380px;
+  height: 350px;
+}
+
+.group-add {
+  grid-area: ttl-tak;
+  align-self: end;
+  position: relative;
+  padding-top: 10px;
+}
+
+.det-add-rating {
+  grid-area: rat-tak;
+  color: rgb(0, 0, 0);
+  padding: 0.3rem;
+  padding-top: 20px;
+  font-size: 1.5rem;
+  display: inline-flex;
+  justify-self: center;
+}
+
+#cancel-btn, #save-btn {
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  padding: 0;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  border-radius: 4px;
+  width: 80%;
+  height: 36px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#cancel-btn {
+  grid-area: btn-ccl;
+  color: rgb(111, 111, 111);
+  background-color: rgb(220, 220, 220);
+}
+
+#save-btn {
+  grid-area: btn-sav;
+  color: rgb(236, 240, 241);
+  background-color: rgb(66,133,244);
+}
+
+.camera-take {
+  padding: 5px;
+  display: grid;
+  grid-auto-rows: 350px 100px;
+  grid-template-areas:
+      "take-pic"
+      "btn-cam";
+  grid-template-columns: 1fr;
+  background-color:rgba(201, 201, 201, 0.3);
+  align-content: start;
+  align-items: start;
+  justify-self: start;
+  width: 100%;
+  height: 450px;
+}
+
+#take-img {
+  grid-area: take-pic;
+  justify-self: center;
+  width: 400px;
+  height: 390px;
+}
+
+#take-btn {
+  grid-area: btn-cam;
+  position: relative;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  padding: 0;
+  overflow: hidden;
+  border-width: 0;
+  outline: none;
+  border-radius: 4px;
+  width: 80%;
+  height: 36px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  background-color: rgb(66,133,244);
+  color: rgb(236, 240, 241);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* TEXT INPUT CUSTOMIZATION ==================== */
+/* LABEL ======================================= */
+label 				 {
+  color:rgb(153, 153, 153);
+  font-size: 1.1rem;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+#det-ttl:focus ~ label,
+#det-ttl:valid ~ label,
+#add-ttl:focus ~ label,
+#add-ttl:valid ~ label 		{
+  top: -10px;
+  font-size: 1rem;
+  color:rgb(66,133,244);
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.bar:before, .bar:after 	{
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background:rgb(66,133,244);
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+#det-ttl:focus ~ .bar:before,
+#det-ttl:focus ~ .bar:after,
+#add-ttl:focus ~ .bar:before,
+#add-ttl:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+#det-ttl:focus ~ .highlight,
+#add-ttl:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+	from { background:rgb(66,133,244); }
+  to 	{ width:0; background: transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background:rgb(66,133,244); }
+  to 	{ width:0; background: transparent; }
+}
+@keyframes inputHighlighter {
+	from { background:rgb(66,133,244); }
+  to 	{ width:0; background: transparent; }
+}
