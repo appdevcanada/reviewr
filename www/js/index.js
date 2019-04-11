@@ -32,9 +32,11 @@ let app = {
     });
     document.querySelector("#fab").addEventListener('click', app.takePicture);
     document.querySelector("#del-btn").addEventListener('click', app.delReview);
+    document.querySelector("#upd-btn").addEventListener('click', app.updateRvw);
     document.querySelector("#cancel-btn").addEventListener('click', app.cancelAdd);
     document.querySelector("#save-btn").addEventListener('click', app.saveLS);
     document.querySelector("#bck-btn").addEventListener('click', app.cancelRvw);
+
     let spans = document.querySelectorAll("div.det-add-rating > span");
     for (let i = 0; i < spans.length; i++) {
       spans[i].addEventListener('click', app.setRating);
@@ -54,8 +56,14 @@ let app = {
     app.clearRating();
     app.loadEvents();
   },
-  cancelRvw: function () {
+  updateRvw: function () {
+    document.querySelector("#bck-btn").classList.toggle("hide");
     app.updReview();
+    app.clearRating();
+    app.loadEvents();
+  },
+  cancelRvw: function () {
+    document.querySelector("#bck-btn").classList.toggle("hide");
     document.querySelector("#det-ttl").value = "";
     app.clearRating();
     app.loadEvents();
@@ -69,14 +77,21 @@ let app = {
         localStorage.setItem("Reviews", JSON.stringify(app.reviews));
       }
     }
+    document.querySelector("#bck-btn").classList.toggle("hide");
     app.loadEvents();
   },
   detReview: function (e) {
     let dataLoaded = {};
+    let updId = 0;
+    if (!e.target.id) {
+      updId = e.target.parentNode.id;
+    } else {
+      updId = e.target.id;
+    }
     let lsReviews = localStorage.getItem("Reviews");
     app.reviews = JSON.parse(lsReviews);
     for (let i = 0; i < app.reviews.length; i++) {
-      if (app.reviews[i]["id"] == e.target.id) {
+      if (app.reviews[i]["id"] == updId) {
         dataLoaded = {
           id: app.reviews[i]["id"],
           title: app.reviews[i]["title"],
@@ -87,9 +102,11 @@ let app = {
         break;
       }
     }
+    document.querySelector("#bck-btn").classList.toggle("hide");
     document.querySelector("#detail-img").src = dataLoaded.img;
     document.querySelector("#det-ttl").value = dataLoaded.title;
     document.querySelector("#del-btn").data_id = dataLoaded.id;
+    document.querySelector("#upd-btn").data_id = dataLoaded.id;
     let rating = document.querySelectorAll("div.det-rating > span");
     for (let i = 0; i <= dataLoaded.rating; i++) {
       rating[i].classList.add("checked");
@@ -98,16 +115,12 @@ let app = {
   },
   takePicture: function () {
     let opts = {
-      allowEdit: false,
-      correctOrientation: true,
-      quality: 80,
       destinationType: Camera.DestinationType.FILE_URI,
       sourceType: Camera.PictureSourceType.CAMERA,
-      mediaType: Camera.MediaType.PICTURE,
       encodingType: Camera.EncodingType.PNG,
-      cameraDirection: Camera.Direction.BACK,
-      targetHeight: 400,
-      targetWidth: 380
+      targetHeight: 350,
+      targetWidth: 380,
+      correctOrientation: true
     };
     navigator.camera.getPicture(app.imgCapture, app.wtf, opts);
   },
@@ -122,7 +135,7 @@ let app = {
         dataLoaded = {
           id: app.reviews[i]["id"],
           title: app.reviews[i]["title"],
-          rating: app.reviews[i]["rating"],
+          rating: parseInt(app.reviews[i]["rating"]),
           img: app.reviews[i]["img"]
         };
         let listLine = document.createElement("li");
@@ -140,31 +153,24 @@ let app = {
         let listDiv = document.createElement("div");
         listDiv.setAttribute("class", "rv-rating");
 
-        let listChk = document.createElement("h3");
-        listChk.setAttribute("class", "checked");
         for (let i = 0; i <= dataLoaded.rating; i++) {
-          listChk.textContent += "★";
+          let listChk = document.createElement("span");
+          listChk.setAttribute("id", i);
+          listChk.setAttribute("class", "fa fa-star checked");
+          listDiv.appendChild(listChk);
+        }
+        if (dataLoaded.rating < 4) {
+          for (let i = dataLoaded.rating + 1; i <= 4; i++) {
+            let listUnChk = document.createElement("span");
+            listUnChk.setAttribute("id", i);
+            listUnChk.setAttribute("class", "fa fa-star");
+            listDiv.appendChild(listUnChk);
+          }
         }
         ulList.appendChild(listLine);
         listLine.appendChild(listImg);
         listLine.appendChild(listTitle);
         listLine.appendChild(listDiv);
-        listDiv.appendChild(listChk);
-        if (dataLoaded.rating < 4) {
-          let listUnChk = document.createElement("h3");
-          for (let i = 1; i <= 4 - dataLoaded.rating; i++) {
-            listUnChk.textContent += "★";
-          }
-          listDiv.appendChild(listUnChk);
-        }
-        // <li class="rv-item" id="">
-        //   <img class="rv-img" src="" />
-        //   <h3 class="rv-title">Just a TITLE</h3>
-        //   <div class="rv-rating">
-        //     <h3 class="checked">★★★</h3>
-        //     <h3>★★</h3>
-        //   </div>
-        // </li>
         listLine.addEventListener('click', app.detReview);
       };
       console.log(localStorage['Reviews']);
@@ -178,17 +184,18 @@ let app = {
       img: document.querySelector("#detail-img").src
     };
     if (localStorage['Reviews']) {
-      let _id = document.querySelector("#del-btn").data_id;
+      let _id = document.querySelector("#upd-btn").data_id;
       app.reviews = JSON.parse(localStorage['Reviews']);
       for (let i = 0; i < app.reviews.length; i++) {
         if (app.reviews[i]["id"] == _id) {
           app.reviews.splice(app.reviews.indexOf(i), 1);
+          break;
         }
       }
+      app.reviews.push(updReview);
+      localStorage.setItem("Reviews", JSON.stringify(app.reviews));
+      console.log(localStorage['Reviews']);
     }
-    app.reviews.push(updReview);
-    localStorage.setItem("Reviews", JSON.stringify(app.reviews));
-    console.log(localStorage['Reviews']);
   },
   saveLS: function () {
     let newReview = {

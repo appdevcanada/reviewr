@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com/;
-        font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://cdnjs.cloudflare.com/;
+        font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://cdnjs.cloudflare.com;
         script-src 'self' 'unsafe-eval';
         img-src 'self' data: content: ;">
     <meta name="format-detection" content="telephone=no">
@@ -19,26 +19,18 @@
 
 <body>
     <div class="header" id="header">
+        <button id="bck-btn" class="hide"></button>
         <h2>REVIEWR</h2>
     </div>
     <div class="pages hide" id="0-home">
         <ul class="rv-list">
-            <!-- <li class="rv-item" id="">
-                <img class="rv-img" src="" />
-                <h3 class="rv-title">Just a TITLE</h3>
-                <div class="rv-rating">
-                    <h3 class="checked">★★★</h3>
-                    <h3>★★</h3>
-                </div>
-            </li> -->
         </ul>
     </div>
     <div class="pages hide" id="1-detail">
         <div class="detail" id="rv-detail">
-            <button id="bck-btn"></button>
             <img class="det-img" id="detail-img" src="" />
             <div class="group-det">
-                <input id="det-ttl" type="text" required>
+                <input id="det-ttl" type="text" tabindex="1" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Title</label>
@@ -50,7 +42,8 @@
                 <span id="3" class="fa fa-star"></span>
                 <span id="4" class="fa fa-star"></span>
             </div>
-            <button id="del-btn" data_id="">Delete Review</button>
+            <button id="del-btn" data_id="" tabindex="3">Delete</button>
+            <button id="upd-btn" data_id="" tabindex="4">Update</button>
         </div>
     </div>
     <!-- I didn't see any need to have a screen just to click another button to open camera -->
@@ -65,7 +58,7 @@
         <div class="add-rv" id="add-rv-detail">
             <img id="rv-img" src="" />
             <div class="group-add">
-                <input id="add-ttl" type="text" required>
+                <input id="add-ttl" type="text" tabindex="1" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Title</label>
@@ -77,8 +70,8 @@
                 <span id="3" class="fa fa-star"></span>
                 <span id="4" class="fa fa-star"></span>
             </div>
-            <button id="cancel-btn">Cancel</button>
-            <button id="save-btn">Save</button>
+            <button id="cancel-btn" tabindex="3">Cancel</button>
+            <button id="save-btn" tabindex="4">Save</button>
         </div>
     </div>
     <nav class="footer hide" id="add-btn">
