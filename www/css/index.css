@@ -57,6 +57,7 @@ h2 {
 h3 {
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 span.fab {
@@ -115,6 +116,7 @@ input, button {
   justify-self: start;
   width: 140px;
   height: 140px;
+  transform: rotate(90deg);
 }
 
 .rv-title {
@@ -139,7 +141,7 @@ input, button {
 .detail {
   padding: 5px;
   display: grid;
-  grid-auto-rows: 350px 60px 45px 90px;
+  grid-auto-rows: 380px 60px 45px 90px;
   grid-template-areas:
       "img img"
       "ttl ttl"
@@ -148,7 +150,7 @@ input, button {
   grid-template-columns: 1fr 1fr;
   background-color:rgb(255, 255, 255);
   width: 100%;
-  height: 540px;
+  height: auto;
 }
 
 #bck-btn {
@@ -160,9 +162,10 @@ input, button {
 
 .det-img {
   grid-area: img;
-  justify-self: start;
-  width: 100%;
-  height: 350px;
+  justify-self: center;
+  width: 380px;
+  height: 380px;
+  transform: rotate(90deg);
 }
 
 #detail-title {
@@ -234,7 +237,7 @@ input, button {
 .add-rv {
   padding: 5px;
   display: grid;
-  grid-auto-rows: 350px 60px 50px 100px;
+  grid-auto-rows: 380px 60px 50px 100px;
   grid-template-areas:
       "img-tak img-tak"
       "ttl-tak ttl-tak"
@@ -246,14 +249,15 @@ input, button {
   align-items: start;
   justify-self: start;
   width: 100%;
-  height: 560px;
+  height: 590px;
 }
  /* rgba(201, 201, 201, 0.3) */
 #rv-img {
   grid-area: img-tak;
   justify-self: center;
   width: 380px;
-  height: 350px;
+  height: 380px;
+  transform: rotate(90deg);
 }
 
 .group-add {

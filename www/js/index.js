@@ -118,7 +118,7 @@ let app = {
       destinationType: Camera.DestinationType.FILE_URI,
       sourceType: Camera.PictureSourceType.CAMERA,
       encodingType: Camera.EncodingType.PNG,
-      targetHeight: 350,
+      targetHeight: 380,
       targetWidth: 380,
       correctOrientation: true
     };
